@@ -10,7 +10,7 @@
 
     <div class=" row">
         <div style="float:right">
-            @Html.ActionLink("Agregar", "Form", "Libro", htmlAttributes: new { @class = "btn btn-success" }) @*Agregar un boton + *@
+            @Html.ActionLink("Agregar", "Form", "Libro", htmlAttributes: new { @class = "btn btn-success" }) 
         </div>
     </div>
 
@@ -22,7 +22,7 @@
                 <tr>
                     @*<th>Hace referencia a las cabeceras de la tabla</th>*@
                     <th>Editar</th>
-                    <th class=" hidden">IdLibro</th> @*se oculta el id del usuario ya que no es necesario el mostrarlo*@
+                    <th class=" hidden">IdLibro</th> 
                     <th>Nombre</th>
                     <th class="hidden">IdAutor</th>
                     <th>Autor</th>
@@ -41,7 +41,7 @@
                     <tr>
                         <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Libro", new { IdLibro = libro.IdLibro})"></a></td>
                         <td class="hidden">@libro.IdLibro</td>
-                        <td>@libro.NombreLibro</td> @*se concatena para que muestre todo junto*@
+                        <td>@libro.NombreLibro</td> 
                         <td class="hidden">@libro.Autor.IdAutor</td>
                         <td>@libro.Autor.NombreAutor</td>
                         <td>@libro.NumeroPaginas</td>
