@@ -1,0 +1,59 @@
+﻿@model ML.Libro 
+@{
+    ViewBag.Title = "GetAll";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <h2>Empresa</h2>
+    <p>Aqui podra ver los datos relacionados con el libro asi como editar y eliminar</p>
+
+    <div class=" row">
+        <div style="float:right">
+            @Html.ActionLink("Agregar", "Form", "Libro", htmlAttributes: new { @class = "btn btn-success" }) @*Agregar un boton + *@
+        </div>
+    </div>
+
+    <hr />
+
+    <dir class=" row">
+        <table class=" table table-responsive">
+            <thead class="thead-dark">
+                <tr>
+                    @*<th>Hace referencia a las cabeceras de la tabla</th>*@
+                    <th>Editar</th>
+                    <th class=" hidden">IdLibro</th> @*se oculta el id del usuario ya que no es necesario el mostrarlo*@
+                    <th>Nombre</th>
+                    <th class="hidden">IdAutor</th>
+                    <th>Autor</th>
+                    <th>Numero de Paginas</th>
+                    <th claas="hidden">IdEditorial</th>
+                    <th>Nombre de la Editorial</th>
+                    <th>Edicion</th>
+                    <th class="hidden">IdGenero</th>
+                    <th>Nombre del genero</th>
+                    <th>Eliminar</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (ML.Libro libro in Model.Libros)
+                {
+                    <tr>
+                        <td class="text-center"><a class="btn btn-warning glyphicon glyphicon-edit" href="@Url.Action("Form", "Libro", new { IdLibro = libro.IdLibro})"></a></td>
+                        <td class="hidden">@libro.IdLibro</td>
+                        <td>@libro.NombreLibro</td> @*se concatena para que muestre todo junto*@
+                        <td class="hidden">@libro.Autor.IdAutor</td>
+                        <td>@libro.Autor.NombreAutor</td>
+                        <td>@libro.NumeroPaginas</td>
+                        <td class="hidden">@libro.Editorial.IdEditorial</td>
+                        <td>@libro.Editorial.NombreEditorial</td>
+                        <td>@libro.Edicion</td>
+                        <td class="hidden">@libro.Genero.IdGenero</td>
+                        <td>@libro.Genero.NombreGenero</td>
+                        <td class="text-center"><a class="btn btn-danger glyphicon glyphicon-trash" href="@Url.Action("Delete", "Libro", new { IdLibro = libro.IdLibro })" onclick="return confirm('Estas seguro que deseas eliminar este registro?');"></a></td>
+                    </tr>
+                }
+            <tbody>
+        </table>
+    </dir>
+</div>

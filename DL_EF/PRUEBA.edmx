@@ -1,0 +1,418 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PRUEBAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="IdAutor" />
+          </Key>
+          <Property Name="IdAutor" Type="int" Nullable="false" />
+          <Property Name="NombreAutor" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Editorial">
+          <Key>
+            <PropertyRef Name="IdEditorial" />
+          </Key>
+          <Property Name="IdEditorial" Type="int" Nullable="false" />
+          <Property Name="NombreEditorial" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="IdGenero" />
+          </Key>
+          <Property Name="IdGenero" Type="int" Nullable="false" />
+          <Property Name="NombreGenero" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Libro">
+          <Key>
+            <PropertyRef Name="IdLibro" />
+          </Key>
+          <Property Name="IdLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreLibro" Type="varchar" MaxLength="50" />
+          <Property Name="IdAutor" Type="int" />
+          <Property Name="NumeroPaginas" Type="int" />
+          <Property Name="FechaPublicacion" Type="varchar" MaxLength="50" />
+          <Property Name="IdEditorial" Type="int" />
+          <Property Name="Edicion" Type="varchar" MaxLength="50" />
+          <Property Name="IdGenero" Type="int" />
+        </EntityType>
+        <Association Name="FK__Libro__IdAutor__2B3F6F97">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="IdAutor" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Libro__IdEditori__2C3393D0">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEditorial" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdEditorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Libro__IdGenero__2D27B809">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="IdGenero" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="AutorGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="DeleteLibro" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdLibro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="EditorialGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GeneroGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LibroAdd" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NombreLibro" Type="varchar" Mode="In" />
+          <Parameter Name="IdAutor" Type="int" Mode="In" />
+          <Parameter Name="NumeroPaginas" Type="int" Mode="In" />
+          <Parameter Name="FechaPublicacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdEditorial" Type="int" Mode="In" />
+          <Parameter Name="Edicion" Type="varchar" Mode="In" />
+          <Parameter Name="IdGenero" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LibroGetAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="LibroGetById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="IdLibro" Type="int" Mode="In" />
+        </Function>
+        <Function Name="LubroUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="NombreLibro" Type="varchar" Mode="In" />
+          <Parameter Name="IdAutor" Type="int" Mode="In" />
+          <Parameter Name="NumeroPaginas" Type="int" Mode="In" />
+          <Parameter Name="FechaPublicacion" Type="varchar" Mode="In" />
+          <Parameter Name="IdEditorial" Type="int" Mode="In" />
+          <Parameter Name="Edicion" Type="varchar" Mode="In" />
+          <Parameter Name="IdGenero" Type="int" Mode="In" />
+          <Parameter Name="IdLibro" Type="int" Mode="In" />
+        </Function>
+        <EntityContainer Name="PRUEBAModelStoreContainer">
+          <EntitySet Name="Autor" EntityType="Self.Autor" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Editorial" EntityType="Self.Editorial" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genero" EntityType="Self.Genero" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Libro" EntityType="Self.Libro" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Libro__IdAutor__2B3F6F97" Association="Self.FK__Libro__IdAutor__2B3F6F97">
+            <End Role="Autor" EntitySet="Autor" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Libro__IdEditori__2C3393D0" Association="Self.FK__Libro__IdEditori__2C3393D0">
+            <End Role="Editorial" EntitySet="Editorial" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Libro__IdGenero__2D27B809" Association="Self.FK__Libro__IdGenero__2D27B809">
+            <End Role="Genero" EntitySet="Genero" />
+            <End Role="Libro" EntitySet="Libro" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PRUEBAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Autor">
+          <Key>
+            <PropertyRef Name="IdAutor" />
+          </Key>
+          <Property Name="IdAutor" Type="Int32" Nullable="false" />
+          <Property Name="NombreAutor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Libroes" Relationship="Self.FK__Libro__IdAutor__2B3F6F97" FromRole="Autor" ToRole="Libro" />
+        </EntityType>
+        <EntityType Name="Editorial">
+          <Key>
+            <PropertyRef Name="IdEditorial" />
+          </Key>
+          <Property Name="IdEditorial" Type="Int32" Nullable="false" />
+          <Property Name="NombreEditorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Libroes" Relationship="Self.FK__Libro__IdEditori__2C3393D0" FromRole="Editorial" ToRole="Libro" />
+        </EntityType>
+        <EntityType Name="Genero">
+          <Key>
+            <PropertyRef Name="IdGenero" />
+          </Key>
+          <Property Name="IdGenero" Type="Int32" Nullable="false" />
+          <Property Name="NombreGenero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Libroes" Relationship="Self.FK__Libro__IdGenero__2D27B809" FromRole="Genero" ToRole="Libro" />
+        </EntityType>
+        <EntityType Name="Libro">
+          <Key>
+            <PropertyRef Name="IdLibro" />
+          </Key>
+          <Property Name="IdLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreLibro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdAutor" Type="Int32" />
+          <Property Name="NumeroPaginas" Type="Int32" />
+          <Property Name="FechaPublicacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdEditorial" Type="Int32" />
+          <Property Name="Edicion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdGenero" Type="Int32" />
+          <NavigationProperty Name="Autor" Relationship="Self.FK__Libro__IdAutor__2B3F6F97" FromRole="Libro" ToRole="Autor" />
+          <NavigationProperty Name="Editorial" Relationship="Self.FK__Libro__IdEditori__2C3393D0" FromRole="Libro" ToRole="Editorial" />
+          <NavigationProperty Name="Genero" Relationship="Self.FK__Libro__IdGenero__2D27B809" FromRole="Libro" ToRole="Genero" />
+        </EntityType>
+        <Association Name="FK__Libro__IdAutor__2B3F6F97">
+          <End Role="Autor" Type="Self.Autor" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Autor">
+              <PropertyRef Name="IdAutor" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdAutor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Libro__IdEditori__2C3393D0">
+          <End Role="Editorial" Type="Self.Editorial" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Editorial">
+              <PropertyRef Name="IdEditorial" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdEditorial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Libro__IdGenero__2D27B809">
+          <End Role="Genero" Type="Self.Genero" Multiplicity="0..1" />
+          <End Role="Libro" Type="Self.Libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genero">
+              <PropertyRef Name="IdGenero" />
+            </Principal>
+            <Dependent Role="Libro">
+              <PropertyRef Name="IdGenero" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRUEBAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Autors" EntityType="Self.Autor" />
+          <EntitySet Name="Editorials" EntityType="Self.Editorial" />
+          <EntitySet Name="Generoes" EntityType="Self.Genero" />
+          <EntitySet Name="Libroes" EntityType="Self.Libro" />
+          <AssociationSet Name="FK__Libro__IdAutor__2B3F6F97" Association="Self.FK__Libro__IdAutor__2B3F6F97">
+            <End Role="Autor" EntitySet="Autors" />
+            <End Role="Libro" EntitySet="Libroes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Libro__IdEditori__2C3393D0" Association="Self.FK__Libro__IdEditori__2C3393D0">
+            <End Role="Editorial" EntitySet="Editorials" />
+            <End Role="Libro" EntitySet="Libroes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Libro__IdGenero__2D27B809" Association="Self.FK__Libro__IdGenero__2D27B809">
+            <End Role="Genero" EntitySet="Generoes" />
+            <End Role="Libro" EntitySet="Libroes" />
+          </AssociationSet>
+          <FunctionImport Name="DeleteLibro">
+          <Parameter Name="IdLibro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LibroAdd">
+            <Parameter Name="NombreLibro" Mode="In" Type="String" />
+            <Parameter Name="IdAutor" Mode="In" Type="Int32" />
+            <Parameter Name="NumeroPaginas" Mode="In" Type="Int32" />
+            <Parameter Name="FechaPublicacion" Mode="In" Type="String" />
+            <Parameter Name="IdEditorial" Mode="In" Type="Int32" />
+            <Parameter Name="Edicion" Mode="In" Type="String" />
+            <Parameter Name="IdGenero" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="LibroGetAll" ReturnType="Collection(PRUEBAModel.LibroGetAll_Result)" />
+          <FunctionImport Name="LibroGetById" ReturnType="Collection(PRUEBAModel.LibroGetById_Result)">
+          <Parameter Name="IdLibro" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="AutorGetAll" ReturnType="Collection(PRUEBAModel.AutorGetAll_Result)" />
+          <FunctionImport Name="EditorialGetAll" ReturnType="Collection(PRUEBAModel.EditorialGetAll_Result)" />
+          <FunctionImport Name="GeneroGetAll" ReturnType="Collection(PRUEBAModel.GeneroGetAll_Result)" />
+          <FunctionImport Name="LubroUpdate">
+            <Parameter Name="NombreLibro" Mode="In" Type="String" />
+            <Parameter Name="IdAutor" Mode="In" Type="Int32" />
+            <Parameter Name="NumeroPaginas" Mode="In" Type="Int32" />
+            <Parameter Name="FechaPublicacion" Mode="In" Type="String" />
+            <Parameter Name="IdEditorial" Mode="In" Type="Int32" />
+            <Parameter Name="Edicion" Mode="In" Type="String" />
+            <Parameter Name="IdGenero" Mode="In" Type="Int32" />
+            <Parameter Name="IdLibro" Mode="In" Type="Int32" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="LibroGetAll_Result">
+          <Property Type="Int32" Name="IdLibro" Nullable="false" />
+          <Property Type="String" Name="NombreLibro" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdAutor" Nullable="true" />
+          <Property Type="String" Name="NombreAutor" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="NumeroPaginas" Nullable="true" />
+          <Property Type="String" Name="FechaPublicacion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdEditorial" Nullable="true" />
+          <Property Type="String" Name="NombreEditorial" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Edicion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdGenero" Nullable="true" />
+          <Property Type="String" Name="NombreGenero" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="LibroGetById_Result">
+          <Property Type="Int32" Name="IdLibro" Nullable="false" />
+          <Property Type="String" Name="NombreLibro" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdAutor" Nullable="true" />
+          <Property Type="String" Name="NombreAutor" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="NumeroPaginas" Nullable="true" />
+          <Property Type="String" Name="FechaPublicacion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdEditorial" Nullable="true" />
+          <Property Type="String" Name="NombreEditorial" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Edicion" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="IdGenero" Nullable="true" />
+          <Property Type="String" Name="NombreGenero" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="AutorGetAll_Result">
+          <Property Type="Int32" Name="IdAutor" Nullable="false" />
+          <Property Type="String" Name="NombreAutor" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="EditorialGetAll_Result">
+          <Property Type="Int32" Name="IdEditorial" Nullable="false" />
+          <Property Type="String" Name="NombreEditorial" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="GeneroGetAll_Result">
+          <Property Type="Int32" Name="IdGenero" Nullable="false" />
+          <Property Type="String" Name="NombreGenero" Nullable="true" MaxLength="50" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PRUEBAModelStoreContainer" CdmEntityContainer="PRUEBAEntities">
+          <EntitySetMapping Name="Autors">
+            <EntityTypeMapping TypeName="PRUEBAModel.Autor">
+              <MappingFragment StoreEntitySet="Autor">
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+                <ScalarProperty Name="NombreAutor" ColumnName="NombreAutor" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Editorials">
+            <EntityTypeMapping TypeName="PRUEBAModel.Editorial">
+              <MappingFragment StoreEntitySet="Editorial">
+                <ScalarProperty Name="IdEditorial" ColumnName="IdEditorial" />
+                <ScalarProperty Name="NombreEditorial" ColumnName="NombreEditorial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Generoes">
+            <EntityTypeMapping TypeName="PRUEBAModel.Genero">
+              <MappingFragment StoreEntitySet="Genero">
+                <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+                <ScalarProperty Name="NombreGenero" ColumnName="NombreGenero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Libroes">
+            <EntityTypeMapping TypeName="PRUEBAModel.Libro">
+              <MappingFragment StoreEntitySet="Libro">
+                <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+                <ScalarProperty Name="NombreLibro" ColumnName="NombreLibro" />
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+                <ScalarProperty Name="NumeroPaginas" ColumnName="NumeroPaginas" />
+                <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
+                <ScalarProperty Name="IdEditorial" ColumnName="IdEditorial" />
+                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+                <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="DeleteLibro" FunctionName="PRUEBAModel.Store.DeleteLibro" />
+          <FunctionImportMapping FunctionImportName="LibroAdd" FunctionName="PRUEBAModel.Store.LibroAdd" />
+          <FunctionImportMapping FunctionImportName="LibroGetAll" FunctionName="PRUEBAModel.Store.LibroGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PRUEBAModel.LibroGetAll_Result">
+                <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+                <ScalarProperty Name="NombreLibro" ColumnName="NombreLibro" />
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+                <ScalarProperty Name="NombreAutor" ColumnName="NombreAutor" />
+                <ScalarProperty Name="NumeroPaginas" ColumnName="NumeroPaginas" />
+                <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
+                <ScalarProperty Name="IdEditorial" ColumnName="IdEditorial" />
+                <ScalarProperty Name="NombreEditorial" ColumnName="NombreEditorial" />
+                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+                <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+                <ScalarProperty Name="NombreGenero" ColumnName="NombreGenero" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LibroGetById" FunctionName="PRUEBAModel.Store.LibroGetById">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PRUEBAModel.LibroGetById_Result">
+                <ScalarProperty Name="IdLibro" ColumnName="IdLibro" />
+                <ScalarProperty Name="NombreLibro" ColumnName="NombreLibro" />
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+                <ScalarProperty Name="NombreAutor" ColumnName="NombreAutor" />
+                <ScalarProperty Name="NumeroPaginas" ColumnName="NumeroPaginas" />
+                <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
+                <ScalarProperty Name="IdEditorial" ColumnName="IdEditorial" />
+                <ScalarProperty Name="NombreEditorial" ColumnName="NombreEditorial" />
+                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
+                <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+                <ScalarProperty Name="NombreGenero" ColumnName="NombreGenero" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="AutorGetAll" FunctionName="PRUEBAModel.Store.AutorGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PRUEBAModel.AutorGetAll_Result">
+                <ScalarProperty Name="IdAutor" ColumnName="IdAutor" />
+                <ScalarProperty Name="NombreAutor" ColumnName="NombreAutor" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="EditorialGetAll" FunctionName="PRUEBAModel.Store.EditorialGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PRUEBAModel.EditorialGetAll_Result">
+                <ScalarProperty Name="IdEditorial" ColumnName="IdEditorial" />
+                <ScalarProperty Name="NombreEditorial" ColumnName="NombreEditorial" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GeneroGetAll" FunctionName="PRUEBAModel.Store.GeneroGetAll">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PRUEBAModel.GeneroGetAll_Result">
+                <ScalarProperty Name="IdGenero" ColumnName="IdGenero" />
+                <ScalarProperty Name="NombreGenero" ColumnName="NombreGenero" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="LubroUpdate" FunctionName="PRUEBAModel.Store.LubroUpdate" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
